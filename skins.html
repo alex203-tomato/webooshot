@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webooshot | skins</title>
+    <link rel="website icon" type="png"  href="skins/logo2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Minecraft&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://unpkg.com/skinview3d@3.2.0/bundles/skinview3d.bundle.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('https://a-static.besthdwallpaper.com/top-view-of-minecraft-game-playground-wallpaper-3440x1440-97631_15.jpg') no-repeat center center fixed;
+            background-size:150%;
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+        }
+
+        /* Header principal */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem ;
+            background: linear-gradient(to right, rgba(35, 106, 148, 0.178), rgba(0, 20, 0, 0.388));
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            font-size: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+    
+        header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    
+        /* Navegación y menús */
+        nav a, .dropdown-button {
+            color: #e0e2ff69;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            position: relative;
+            padding: 0.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+    
+        nav a:hover {
+            color: #00eeff;
+            text-shadow: #00bbff;
+        }
+    
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: #00e5ff;
+            transition: width 0.3s ease;
+        }
+    
+        nav a:hover::after {
+            width: 100%;
+        }
+    
+        /* Dropdown menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+    
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            z-index: 1001;
+        }
+    
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            color: #727272 !important;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.8em;
+        }
+    
+        .dropdown-content a:hover {
+            background: rgba(255, 8, 0, 0.1);
+            color: #c7f4ff !important;
+        }
+
+        canvas {
+            background-color: #30343091;
+            border-radius: 10px;
+            flex: 0 0 auto;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 1cm;
+        }x
+
+        .gallery-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skin-gallery {
+            max-width: 590px;
+            padding: 20px; 
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            overflow-y: auto;
+        }
+        
+        .skin-thumbnail {
+            width: 120px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .skin-thumbnail:hover {
+            border-color: #00ff00;
+            transform: scale(1.05);
+        }
+
+        .skin-thumbnail.active {
+            border-color: #00ff00;
+            box-shadow: 0 0 15px #00ff00;
+        }
+
+        .description-container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            max-width: 590px;
+            width: 100%;
+        }
+
+        .skin-name {
+            color: #fbff00;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .skin-desc-text {
+            font-size: 0.8em;
+            line-height: 1.4;
+            color: #cccccc;
+        }
+        .pp{
+            text-align: center;
+            margin-top: 3cm;
+        }
+        .download-btn {
+            padding: 10px 20px;
+            background-color: #ff9900;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1em;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .download-btn:hover {
+            background-color: #bb6100;
+        }
+        .p{
+    font-family:Arial, Helvetica, sans-serif;  
+    font-size: 16px;
+    text-align: justify; 
+    margin-left: 4cm;
+    color:#ffffff;
+
+    background-color: #4d4d4d;
+    padding: 20px;
+    border-radius: 14px;
+    width: 75%;;
+
+        }
+    </style>
+</head>
+<body>
+    <header id="mainHeader">
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="index.html#features">Características</a>
+            <a href="index.html#gallery">Galería</a>
+            <div class="dropdown">
+                <button class="dropdown-button" onclick="toggleDropdown()" aria-expanded="false">Más ▾</button>
+                <div class="dropdown-content" id="menu" aria-hidden="true">
+                    <a href="#">Skins</a>
+                    <a href="texturas.html">Texturas y Mundos</a>
+                </div>
+            </div>
+            <a href="index.html#join">Unirse</a>
+        </nav>
+    </header>  
+<div class="pp"><h1>Catálogo de Skins</h1></div>
+<br><br>
+<p class="p">¡Explora nuestra colección de skins exclusivas para destacar en el mundo de Webooshot! Desde estilos clásicos hasta diseños únicos creados por la comunidad, aquí encontrarás la apariencia perfecta para tu personaje. Elige tu favorita, descárgala gratis y dale un toque personal a tu aventura.</p>
+   
+    <div class="container">
+        <canvas id="skin-container" width="300" height="400"></canvas>
+        
+        <div class="gallery-wrapper">
+            <div class="description-container" id="skinDesc">
+                <div class="skin-name" id="skinName"></div>
+                <div class="skin-desc-text" id="skinText">Haz clic en cualquier skin para ver su descripción</div>
+                <button id="downloadBtn" class="download-btn" style="display:none;" onclick="descargarSkin()">Descargar Skin</button>
+            </div>
+            <div class="skin-gallery" id="gallery">
+                <!-- Miniaturas de skins con datos -->
+                <img src="https://s.namemc.com/3d/skin/body.png?id=071af634d778c032&model=classic&width=308&height=308" 
+                     class="skin-thumbnail" 
+                     onclick="cargarSkin('skins/skin.png',this)" 
+                     data-name="Héroe Clásico" 
+                     data-desc="Skin clásica de héroe medieval con armadura dorada y capa roja."
+                     alt="Skin 1">
+
+                <img src="skins/invincible-vista.png" 
+                     class="skin-thumbnail" 
+                     onclick="cargarSkin('skins/invincible-.png', this)" 
+                     data-name="Mark Grayson - Invencible" 
+                     data-desc="Skin basada en el famoso héroe cósmico con detalles de alta tecnología."
+                     alt="Skin 2">
+                <img src="skins/omniman vista.png" 
+                     class="skin-thumbnail" 
+                     onclick="cargarSkin('skins/omniman.png', this)" 
+                     data-name="Omni-Man" 
+                     data-desc="Skin de poder cósmico con armadura de batalla completa y capa flotante."
+                     alt="Skin 3">
+                <!-- Resto de skins con datos similares -->
+                <img src="skins/viltrumite-mark-vista.png" 
+                class="skin-thumbnail" 
+                onclick="cargarSkin('skins/viltrumite-mark-.png', this)" 
+                data-name="viltrumite-mark" 
+                data-desc="Skin de Mark con traje completamente blanco, reflejando su dominio y pureza como Viltrumita.." 
+                alt="Skin 4">
+
+                <img src="skins/omni-mark-vista.png" 
+                class="skin-thumbnail" 
+                onclick="cargarSkin('skins/omni-mark-.png', this)" 
+                data-name="Omni-Mark" 
+                data-desc="Skin alternativa con el traje de Omni-Man, mostrando a Mark como heredero directo de su padre." 
+                alt="Skin 4">
+
+                <img src="skins/alternate-mohawk-mark-vista.png" 
+                class="skin-thumbnail" 
+                onclick="cargarSkin('skins/alternate-mohawk-mark.png', this)" 
+                data-name="Mark Grayson - Mohawk" 
+                data-desc="Una versión rebelde de Mark, con peinado mohicano y actitud más desafiante"
+                alt="Skin 4">
+
+                <img src="skins/sinister-mark-vista.png" 
+                class="skin-thumbnail" 
+                onclick="cargarSkin('skins/sinister-mark.png', this)" 
+                data-name="Mark Grayson - Siniestro" 
+                data-desc="Una variante oscura y corrupta de Mark, con sed de poder y mirada fría." 
+                alt="Skin 4">
+
+                <img src="skins/season-3--invencible-vista.png" 
+                class="skin-thumbnail" 
+                onclick="cargarSkin('skins/season-3--invencible.png', this)" 
+                data-name="Mark Grayson - Suit Black" 
+                data-desc="Un traje más sobrio y táctico, reflejo de la madurez y peso que carga tras las batallas vividas.." 
+                alt="Skin 4">
+
+                
+
+                
+              </div>
+        </div>
+    </div>
+
+    <script>
+        // Control del menú desplegable
+        function toggleDropdown() {
+            const menu = document.getElementById("menu");
+            const isExpanded = menu.getAttribute('aria-hidden') === 'false';
+            menu.classList.toggle("show");
+            menu.setAttribute('aria-hidden', !isExpanded);
+            document.querySelector('.dropdown-button').setAttribute('aria-expanded', isExpanded);
+        }
+
+        
+        // Función para descargar la skin
+        function descargarSkin() {
+            const skinUrl = document.getElementById('downloadBtn').getAttribute('data-skin-url');
+            const a = document.createElement('a');
+            a.href = skinUrl;
+            a.download = skinUrl.split('/').pop();  // Extrae el nombre de archivo de la URL
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Configuración del visor
+        const viewer = new skinview3d.SkinViewer({
+            canvas: document.getElementById("skin-container"),
+            skin: "1002739174.png",
+            width: 300,
+            height: 400
+        });
+
+        viewer.animation = new skinview3d.WalkingAnimation();
+        viewer.autoRotate = false;
+        viewer.zoom = 0.8;
+
+        // Función para cargar skins
+        function cargarSkin(skinUrl, element) {
+    document.querySelectorAll('.skin-thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+    });
+
+    viewer.loadSkin(skinUrl).then(() => {
+        element.classList.add('active');
+
+        const skinName = document.getElementById('skinName');
+        const skinText = document.getElementById('skinText');
+        skinName.textContent = element.dataset.name;
+        skinText.textContent = element.dataset.desc;
+        // Mostrar el botón de descarga
+                const downloadBtn = document.getElementById('downloadBtn');
+                downloadBtn.style.display = 'inline-block';
+                downloadBtn.setAttribute('data-skin-url', skinUrl);  // Guardar URL de la skin para descarga
+            });
+        }
+
+        // Cargar primera skin por defecto
+        document.querySelector('.skin-thumbnail').click();
+    </script>
+</body>
+</html>

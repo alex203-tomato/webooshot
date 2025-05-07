@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webooshot | Menú</title>
+    <link rel="website icon" type="png"  href="skins/logo2.png">
+    <link href="https://fonts.googleapis.com/css2?family=Minecraft&family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: url('https://cdn2.steamgriddb.com/hero/ecd812da02543c0269cfc2c56ab3c3c0.png') no-repeat center center fixed;
+            background-size:150%;
+            font-family: 'Press Start 2P', cursive;
+            color: #fff;
+        }
+
+       /* Header principal */
+       header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem ;
+            background: linear-gradient(to right, rgba(35, 106, 148, 0.178), rgba(0, 20, 0, 0.388));
+            backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            font-size: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(0, 255, 0, 0.1);
+        }
+    
+        header.hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    
+        /* Navegación y menús */
+        nav a, .dropdown-button {
+            color: #e0e2ff69;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            position: relative;
+            padding: 0.5rem 0;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+         
+        }
+    
+        nav a:hover {
+            color: #00eeff;
+            text-shadow: #00bbff;
+        }
+    
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: #00e5ff;
+            transition: width 0.3s ease;
+        }
+    
+        nav a:hover::after {
+            width: 100%;
+        }
+    
+        /* Dropdown menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            
+        }
+    
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.9);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            border-radius: 5px;
+            z-index: 1001;
+        }
+    
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    
+        .dropdown-content a {
+            display: block;
+            padding: 12px 16px;
+            color: #727272 !important;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.8em;
+        }
+    
+        .dropdown-content a:hover {
+            background: rgba(255, 8, 0, 0.1);
+            color: #c7f4ff !important;
+        }
+
+        /* Sección Hero */
+    
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7));
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .server-ip {
+            font-size: 1.5rem;
+            background: rgba(0,0,0,0.7);
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            display: inline-block;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .server-ip:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        /* Sección de características */
+        .features {
+            padding: 3rem 1rem;
+            background: #1a1a1a;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(0,255,0,0.1);
+        }
+        .logo {
+            font-family: 'Minecraft', sans-serif;
+            font-size: 15px;
+            color: #f7fbf7;
+            text-shadow: 2px 2px #005500;
+            text-align: center;
+        }
+        /* Galería */
+        
+        .main-container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 20px;
+            margin: 0 auto; /* esto centra horizontalmente el contenedor */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* esto centra el contenido interno */
+        }
+
+        .main-image {
+            width: 80%;
+            height: 60vh;
+            object-fit: contain;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            background-color:#4a687a88;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: opacity 0.3s ease;
+        }
+
+        .thumbnail-container {
+            width: 100%;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px ;
+            scrollbar-width:auto;
+            background-color: #ffffff73;
+            border-radius: 10px;
+        }
+
+        .thumbnail {
+            min-width: 120px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .thumbnail.selected {
+            border-color: #2196F3;
+            transform: scale(1.08);
+            box-shadow: 0 2px 10px rgba(33,150,243,0.4);
+        }
+
+        /* Scrollbar personalizada */
+        .thumbnail-container::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .thumbnail-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .main-image {
+                height: 50vh;
+            }
+            
+            .thumbnail {
+                min-width: 80px;
+                height: 60px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                display: none;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+
+        .cta-button {
+            background: #ff6200d3;
+            color: #f8f6f6;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-family: 'Minecraft', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .cta-button:hover {
+            background: #ffa60c;
+            transform: scale(1.1);
+        }
+        .mi-boton {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #00ff00;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.mi-boton:hover {
+    background-color: #00cc00;
+    transform: scale(1.05);
+}
+
+.string{
+    margin: 70px;
+    font-size: 16px;
+    text-align: justify;
+    padding: 12px;
+    border-radius: 15px;
+    background-color: #1a1a1a;
+      line-height: 1.6;
+      margin-bottom: 1em;
+      font-family:Arial, Helvetica, sans-serif;   
+}
+.p{
+
+    font-family:Arial, Helvetica, sans-serif;  
+    font-size: 16px;
+    text-align: justify; 
+}
+
+    </style>
+</head>
+<body>
+    <header id="mainHeader">
+        
+        <nav>
+            <a href="#home">Inicio</a>
+            <a href="#features">Características</a>
+            <a href="#gallery">Galería</a>
+            <div class="dropdown">
+                <button class="dropdown-button" onclick="toggleDropdown()" aria-expanded="false">Más ▾</button>
+                <div class="dropdown-content" id="menu" aria-hidden="true">
+                    <a href="skins.html">Skins</a>
+                    <a href="texturas.html">Texturas y Mundos</a>
+                </div>
+            </div>
+            <a href="#join">Unirse</a>
+        </nav>
+    </header>   
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="imagenes\logo.png">
+            <p>Bienvenido al servidor de Minecraft más épico del multiverso</p>
+            <div>
+                <a href="https://add.aternos.org/webooshot" class="cta-button">¡Únete Ahora!</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <img  style="width: 30%; padding: 12px; margin-left: 8px;"  src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/game-characters/MC-About_Key-Art_Gather_Resources_600x800.png" alt="">
+        <img  style="width: 30%; padding: 12px;margin-left: 1cm;"  src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/game-characters/MC-About_Key-Art_Survive_the_Night_600x800.png" alt="">
+        <img  style="width: 30%; padding: 12px;margin-left: 1cm;"  src="https://www.minecraft.net/content/dam/minecraftnet/games/minecraft/game-characters/MC-About_Key-Art_Build_Amazing_Things_600x800.png" alt="">
+
+        <div class="feature-grid">
+            
+            <div class="feature-card">
+                           <h3>Objetivo</h3>
+                <br>
+                <p class="p">Ofrecer una experiencia de juego centrada en la supervivencia técnica, donde los jugadores puedan automatizar, optimizar y construir sistemas complejos en un entorno colaborativo, estable y en constante evolución, fomentando la creatividad, el ingenio y la eficiencia.</p>
+            </div>
+            <div class="feature-card">
+                <h3>Versión del juego</h3>
+                <br>
+                <p class="p">Actualmente en la <b>v1.21.73</b> y nuestro equipo trata de mantener el servidor al dia con las actualizaciones, priorizando el rendimiento y la comodidad de los jugadores. Las actualizaciones se hacen a media noche y también se notifican con 3 dias de anticipación.   </p>
+            </div>
+            <div class="feature-card">
+                <h3>Reglas de convivencia</h3>
+                <br>
+                <div class="p">
+                <ul>
+                    <li>Respetar los limites de territorios. </li>
+                    <li>Colaborar en la creación de grajas o construcciones.</li>
+                    <li>Desafiar a un jugador antes de comenzar un duelo Pvp.</li>
+                    <li>No saquear bases de otros jugadores.</li>
+                </ul>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <div class="string">
+
+        <div class="logo">
+        <h2>SUPERVIVENCIA TÉCNICA EN SU MÁXIMA EXPRESIÓN</h2>
+    </div>
+        <p>Automatiza, optimiza y crea sistemas complejos que lleven tus <b>habilidades al límite.</b> Construye granjas, consigue recursos de forma inteligente y diseña infraestructuras que desafíen tu ingenio.
+            En <em>Webooshot</em>, no solo sobrevives: dominas el mundo bloque a bloque.</p>
+    </div>
+    <section class="main-container" id="gallery">
+        <img class="main-image" id="mainImage" src="imagenes/download.png" alt="Imagen principal">
+        <div class="thumbnail-container">
+        <div class="thumbnail-container" id="thumbnailContainer">
+            <img src="imagenes\download.png" class="thumbnail selected" alt="Miniatura 1">
+            <img src="imagenes\Imagen de WhatsApp 2025-04-28 a las 01.41.26_c7166522.jpg" class="thumbnail" alt="Miniatura 2">
+            <img src="imagenes\hierrooo.jpg" class="thumbnail" alt="Miniatura 3">
+            <img src="https://i.ytimg.com/vi/kzOD-TCMA5Q/maxresdefault.jpg" class="thumbnail" alt="Miniatura 4">
+            <img src="imagenes\canaa.jpg" class="thumbnail" alt="Miniatura 4">
+            <img src="https://preview.redd.it/2cf8jdoq2y861.png?auto=webp&s=db2a3f8fa0b7f26139c7c2120041c31f6d3456d8" class="thumbnail" alt="Miniatura 4">
+            <img src="https://cloudfront-eu-central-1.images.arcpublishing.com/diarioas/O7TZBMDASFJM7EDKJDYWFEP2LM.jpg" class="thumbnail" alt="Miniatura 4">
+            <img src="https://preview.redd.it/bedrock-iron-farm-v0-h18n69aqcr5d1.jpg?width=640&crop=smart&auto=webp&s=b890afef011cee85c1bf4ed23d57822c187e82fc" class="thumbnail" alt="Miniatura 4">
+            <img src="https://i.redd.it/bedrock-why-do-endermen-barely-spawn-in-my-farm-v0-b2s0xghph0db1.png?width=2560&format=png&auto=webp&s=895474b168fe61ff1d08d3ace4625d2c3b84d37f" class="thumbnail" alt="Miniatura 4">
+            <img src="https://pm1.aminoapps.com/6979/d92b4ccbcc3a2341dd01fafcae1d1960fe427f53r1-1920-1001v2_uhq.jpg" class="thumbnail" alt="Miniatura 4">
+            <img src="https://i.redd.it/rate-my-barn-bedrock-survival-cow-farm-build-v0-2ia022e57g1b1.png?width=1920&format=png&auto=webp&s=697eec872f3a0975d326804920694a707fb66457" class="thumbnail" alt="Miniatura 5">
+        </div>
+    </div>
+    </section>
+
+    <section id="join" style="padding: 5rem 2rem; text-align: center;">
+        <h2>¿Qué esperas para unirte?</h2>
+        <a href="https://www.youtube.com/watch?v=wv2QRJpZ5Uk" class="cta-button">¡Juega Gratis Ahora!</a>
+    </section>
+
+    <footer>
+        <p>Síguenos en redes sociales</p>
+        <div style="margin: 1rem;">
+            <a href="#" style="color: #00ff00; margin: 0 1rem;"><i class="fab fa-discord"></i></a>
+            <a href="#" style="color: #00ff00; margin: 0 1rem;"><i class="fab fa-twitter"></i></a>
+            <a href="#" style="color: #00ff00; margin: 0 1rem;"><i class="fab fa-youtube"></i></a>
+        </div>
+    </footer>
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+            const mainImage = document.getElementById('mainImage');
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            
+            // Función para cambiar la imagen principal
+            function changeMainImage(event) {
+                // Remover clase selected de todas las miniaturas
+                thumbnails.forEach(thumb => thumb.classList.remove('selected'));
+                
+                // Añadir clase selected a la miniatura clickeada
+                event.target.classList.add('selected');
+                
+                // Actualizar imagen principal
+                mainImage.src = event.target.src;
+                
+                // Efecto de transición
+                mainImage.style.opacity = 0;
+                setTimeout(() => {
+                    mainImage.style.opacity = 1;
+                }, 100);
+            }
+
+            // Añadir evento click a cada miniatura
+            thumbnails.forEach(thumb => {
+                thumb.addEventListener('click', changeMainImage);
+            });
+
+            // Auto-scroll a la miniatura seleccionada
+            document.querySelector('.thumbnail-container').addEventListener('click', (e) => {
+                if (e.target.classList.contains('thumbnail')) {
+                    e.target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+            });
+        });
+
+
+        // Control del menú desplegable
+        function toggleDropdown() {
+            const menu = document.getElementById("menu");
+            const isExpanded = menu.getAttribute('aria-hidden') === 'false';
+            menu.classList.toggle("show");
+            menu.setAttribute('aria-hidden', !isExpanded);
+            document.querySelector('.dropdown-button').setAttribute('aria-expanded', isExpanded);
+        }
+
+        // Cerrar menú al hacer clic fuera
+        window.onclick = function(event) {
+            if (!event.target.closest('.dropdown')) {
+                const menu = document.getElementById("menu");
+                if (menu.classList.contains('show')) {
+                    menu.classList.remove("show");
+                    menu.setAttribute('aria-hidden', 'true');
+                    document.querySelector('.dropdown-button').setAttribute('aria-expanded', 'false');
+                }
+            }
+        }
+
+        // Efecto de header dinámico
+        let lastScroll = 0;
+        const header = document.getElementById('mainHeader');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll > 100) {
+                if (currentScroll > lastScroll && !header.classList.contains('hidden')) {
+                    header.classList.add('hidden');
+                } else if (currentScroll < lastScroll && header.classList.contains('hidden')) {
+                    header.classList.remove('hidden');
+                }
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+       
+
+        const thumbnails = document.querySelectorAll('.thumbnail');
+    const mainImage = document.getElementById('mainImage');
+    let currentIndex = 0;
+    let interval;
+
+    function showImage(index) {
+        thumbnails.forEach((thumb, i) => {
+            thumb.classList.remove('selected');
+            if (i === index) {
+                thumb.classList.add('selected');
+                mainImage.src = thumb.src;
+            }
+        });
+        currentIndex = index;
+    }
+
+    function selectImage(index) {
+        showImage(index);
+        resetInterval();
+    }
+
+    function autoRotate() {
+        currentIndex = (currentIndex + 1) % thumbnails.length;
+        showImage(currentIndex);
+    }
+
+    function resetInterval() {
+        clearInterval(interval);
+        interval = setInterval(autoRotate, 3000);
+    }
+
+    // Inicializar
+    showImage(0);
+    interval = setInterval(autoRotate, 3000); 
+
+    </script>
+</body>
+</html>
